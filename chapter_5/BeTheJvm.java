@@ -9,7 +9,7 @@ class Output {
         for (int i = 1; i<8; i++) {
             value++;
             if (i>4) {
-                System.out.print(++value+" ");
+                System.out.print(++value+" "); // ++value maksudnya sama seperti value++ nambah 1
             }
             if (value > 14) {
                 System.out.println(" i = " + i);
