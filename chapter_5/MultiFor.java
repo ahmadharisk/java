@@ -21,7 +21,7 @@ public class MultiFor {
         for (int i = 0; i < 3; i++) {
             for (int j = 4; j > 1; j--) {
                 System.out.println("i: "+i+",j: "+j);
-                x = x + 3;
+                x = x + 0;
                 y = y - 2;
                 if (x==6) {
                     System.out.println(x + " " + y);
