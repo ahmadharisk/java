@@ -1,32 +1,30 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * SimpleStartupGame
  */
 
-class SimpleStartup {
-    int[] locationCells;
-    int numOfHits;
+class Startup {
+    private ArrayList<String> locationCells;
 
-    public void setLocationCells(int[] locs) {
-        this.locationCells = locs;
+    public void setLocationCells(ArrayList<String> locs) {
+        locationCells = locs;
     }
 
-    public String checkYourself(int guess) {
+    public String checkYourself(String userInput) {
         String result = "miss";
+        int index = locationCells.indexOf(userInput);
 
-        for (int cell : locationCells) {
-            if (guess == cell) {
+        if (index >= 0) {
+            locationCells.remove(index);
+
+            if (locationCells.isEmpty()) {
+                result = "kill";
+            } else {
                 result = "hit";
-                numOfHits++;
-                break;
             }
         }
-
-        if (numOfHits == locationCells.length) {
-            result = "kill";
-        }
-        System.out.println(result);
         return result;
     }
 }
@@ -35,50 +33,39 @@ class GameHelper {
     public int getUserInput(String promp) {
         System.out.println(promp + ": ");
         Scanner scanner = new Scanner(System.in);
-        scanner.close();
         return scanner.nextInt();
     }
 }
 
 class SimpleStartupTestDrive {
     public static void main(String[] args) {
-        // SimpleStartup dot = new SimpleStartup();
-
-        // int[] locations = {2,3,4};
-        // dot.setLocationCells(locations);
-
-        // int userGeuss = 2;
-        // String result = dot.checkYourself(userGeuss);
-        // String testResult = "failed";
-
-        // if(result.equals("hit")) {
-        //     testResult = "passed";
-        // }
-
-        // System.out.println(testResult);
 
         int numOfGuesses = 0;
         GameHelper helper = new GameHelper();
-        SimpleStartup theStartup = new SimpleStartup();
+        Startup theStartup = new Startup();
 
         int randomNum = (int) (Math.random() * 5);
 
-        int[] locations = {randomNum, randomNum+1, randomNum + 2};
-        System.out.println("location: "+randomNum);
+        ArrayList<String> locs = new ArrayList<String>();
+        locs.add(String.valueOf(randomNum));
+        locs.add(String.valueOf(randomNum+1));
+        locs.add(String.valueOf(randomNum+2));
+        System.out.println("key start location: " + randomNum);
 
-        theStartup.setLocationCells(locations);
+        theStartup.setLocationCells(locs);
         boolean isAlive = true;
 
         while (isAlive) {
-            int guess = helper.getUserInput("enter a number");
-            
+            String guess = String.valueOf(helper.getUserInput("enter a number"));
+
             String result = theStartup.checkYourself(guess);
             numOfGuesses++;
+            System.out.println(result);
 
             if (result.equals("kill")) {
                 isAlive = false;
 
-                System.out.println("You took "+numOfGuesses+" guesses");
+                System.out.println("You took " + numOfGuesses + " guesses");
             }
         }
     }
