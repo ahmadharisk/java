@@ -5,7 +5,7 @@ import com.peppo.repository.TodoListRepository;
 
 public class TodoListServiceImp implements TodoListService{
 
-    private TodoListRepository todoListRepository;
+    private final TodoListRepository todoListRepository;
 
     public TodoListServiceImp(TodoListRepository todoListRepository) {
         this.todoListRepository = todoListRepository;

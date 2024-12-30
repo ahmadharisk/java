@@ -28,7 +28,6 @@ public class TodoListRepositoryImp implements TodoListRepository{
                 data[i] = null;
                 break;
             }
-            ;
             data[i] = data[i + 1];
         }
         return true;
