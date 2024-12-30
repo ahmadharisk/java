@@ -1,15 +1,34 @@
-class Startup {
-    private String name;
+import java.util.ArrayList;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+public class SinkStartup {
+  private ArrayList<String> locationCells;
 
-    public String getName() {
-        return name;
+  public void setLocationCells(ArrayList<String> locs) {
+    locationCells = locs;
+  }
+
+  public String checkYourSelf(String userInput) {
+    String result = "miss";
+    int index = locationCells.indexOf(result);
+
+    if (index >= 0) {
+      locationCells.remove(index);
+
+      if (locationCells.isEmpty()) {
+        result = "kill";
+      } else {
+        result = "hit";
+      }
     }
+    return result;
+  }
 }
 
-class StartupBust {}
+class StartupBust {
+
+  public static void main(String[] args) {
+    
+  }
+}
 
 class GameHelper {}
